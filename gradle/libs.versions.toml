@@ -1,0 +1,24 @@
+[versions]
+versionCode = "1"
+versionName = "1.0.0"
+compileSdk = "32"
+targetSdk = "32"
+minSdk = "24"
+kotlin = "1.6.21"
+compose = "1.2.0-beta01"
+
+[libraries]
+ktx-core = { group = "androidx.core", name = "core", version = "1.7.0" }
+ktx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version = "2.4.1" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.0.0-alpha11" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version = "1.4.0" }
+compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version = "1.0.0" }
+ksp-processor = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version = "1.6.21-1.0.5" }
+ksp-poet = { group = "com.squareup", name = "kotlinpoet-ksp", version = "1.11.0" }
+
+[bundles]
+ktx = ["ktx-core", "ktx-lifecycle-runtime"]
+compose = ["compose-ui", "compose-preview", "compose-material3", "compose-activity", "compose-constraintlayout"]
+ksp = ["ksp-processor", "ksp-poet"]
