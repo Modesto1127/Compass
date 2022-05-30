@@ -1,13 +1,22 @@
 plugins {
     kotlin("jvm")
+    id("com.vanniktech.maven.publish")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
-dependencies {
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies{
     implementation(libs.bundles.ksp)
-    implementation(project(":anno"))
-    implementation(project(":stub"))
+    compileOnly(project(":stub"))
+}
+
+mavenPublish {
+    sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
 }

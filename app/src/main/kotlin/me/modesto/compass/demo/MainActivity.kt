@@ -10,15 +10,16 @@ import me.modesto.compass.Compass
 import me.modesto.compass.anno.DestAnno
 import me.modesto.compass.demo.ui.theme.CompassTheme
 
-@DestAnno(path = "main")
+@DestAnno(dest = "main")
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val testcase = Testcase("testcase", false, "Testcase")
             CompassTheme {
                 Column {
                     Text(text = "Hello Compass")
-                    Button(onClick = { Compass.dest("second").go(this@MainActivity) }) {
+                    Button(onClick = { Compass.dest("second").with("testcase", testcase).go(this@MainActivity) }) {
                         Text(text = "go second activity")
                     }
                     Button(onClick = { Compass.dest("test_one").go(this@MainActivity) }) {
@@ -29,6 +30,9 @@ class MainActivity : ComponentActivity() {
                     }
                     Button(onClick = { Compass.dest("test_three").go(this@MainActivity) }) {
                         Text(text = "go test three activity")
+                    }
+                    Button(onClick = { Compass.dest("sample_one_home").go(this@MainActivity) }) {
+                        Text(text = "go sample one home activity")
                     }
                 }
             }

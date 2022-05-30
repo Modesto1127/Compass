@@ -1,9 +1,8 @@
-import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isIncrementalKapt
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -46,28 +45,16 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    sourceSets {
-        getByName("main") {
-            java.srcDirs("./build/generated/ksp")
-        }
-    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
-ksp {
-    arg("Compass.module_name", "App")
-    arg("Compass.loggable", "true")
-    arg("CompassDoc.output", "${buildDir}/doc/cache.txt")
-}
-
 dependencies {
 
-    ksp(project(":compiler"))
     implementation(project(":api"))
-    implementation(project(":anno"))
+    ksp(project(":compiler"))
     implementation(project(":sample_one"))
     implementation(libs.bundles.ktx)
     implementation(libs.bundles.compose)

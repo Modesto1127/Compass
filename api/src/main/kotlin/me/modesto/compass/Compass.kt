@@ -1,7 +1,5 @@
 package me.modesto.compass
 
-import android.util.Log
-
 /**
  * Description.
  *
@@ -9,23 +7,23 @@ import android.util.Log
  */
 object Compass {
 
-    private val map: MutableMap<String, DestStruct> = mutableMapOf()
+    private val map: MutableMap<String, DestMeta> = mutableMapOf()
 
-    fun init(storeList: List<IRouteStore>) {
-        storeList.forEach { store ->
-            store.getMap().forEach { (path, dest) ->
-                Log.d("MLQ", "register: $path")
-                map[path] = DestStruct(dest)
-            }
-        }
+    private fun initIfNeed() {
+        if (map.isEmpty()) CompassRegistry.initAll()
     }
 
-    fun dest(dest: String, priority: Int = 0): DestStruct {
-        val path = "${dest}_$priority"
-        if (map.containsKey(path)) {
-            return map[path]!!
+    fun registerDest(path: String, destMeta: DestMeta) {
+        map[path] = destMeta
+    }
+
+    fun dest(dest: String, priority: Int = 0): DestRequest {
+        initIfNeed()
+        val realDest = "${dest}_$priority"
+        if (map.containsKey(realDest)) {
+            return DestRequest(map[realDest]!!)
         } else {
-            throw RuntimeException("")
+            throw RuntimeException("Wrong destination")
         }
     }
 

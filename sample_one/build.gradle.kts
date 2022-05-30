@@ -26,13 +26,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+    }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    sourceSets {
-        getByName("main") {
-            java.srcDirs("./build/generated/ksp")
-        }
     }
 }
 
@@ -45,7 +46,6 @@ dependencies {
 
     ksp(project(":compiler"))
     implementation(project(":api"))
-    implementation(project(":anno"))
     implementation(libs.bundles.ktx)
     implementation(libs.bundles.compose)
 

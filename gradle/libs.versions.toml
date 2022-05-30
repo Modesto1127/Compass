@@ -1,11 +1,12 @@
 [versions]
 versionCode = "1"
 versionName = "1.0.0"
-compileSdk = "32"
-targetSdk = "32"
-minSdk = "24"
+compileSdk = "31"
+targetSdk = "31"
+minSdk = "21"
 kotlin = "1.6.21"
 compose = "1.2.0-beta01"
+compass = "1.0.0-alpha02"
 
 [libraries]
 ktx-core = { group = "androidx.core", name = "core", version = "1.7.0" }
@@ -17,6 +18,8 @@ compose-activity = { group = "androidx.activity", name = "activity-compose", ver
 compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version = "1.0.0" }
 ksp-processor = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version = "1.6.21-1.0.5" }
 ksp-poet = { group = "com.squareup", name = "kotlinpoet-ksp", version = "1.11.0" }
+compass-api = { group = "com.modestoma", name = "compass", version.ref = "compass"}
+compass-compiler = { group = "com.modestoma", name = "compass-compiler", version.ref = "compass" }
 
 [bundles]
 ktx = ["ktx-core", "ktx-lifecycle-runtime"]

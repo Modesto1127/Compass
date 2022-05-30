@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -30,6 +31,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":anno"))
-    api(project(":stub"))
+    compileOnly(project(":stub"))
+}
+
+mavenPublish {
+    sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
 }
