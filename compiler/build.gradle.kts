@@ -12,7 +12,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-dependencies{
+dependencies {
     implementation(libs.bundles.ksp)
     compileOnly(project(":stub"))
 }

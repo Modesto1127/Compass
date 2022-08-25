@@ -32,6 +32,7 @@ android {
 
 dependencies {
     compileOnly(project(":stub"))
+    compileOnly("androidx.activity:activity-ktx:1.4.0")
 }
 
 mavenPublish {
